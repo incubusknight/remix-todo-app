@@ -45,24 +45,24 @@ This application uses React Router's **Framework mode**, which provides the full
 
 ```
 app/
-├── components/         # React components
-│   ├── shared/         # Reusable UI components (Badge, etc.)
-│   ├── TodoList.tsx    # Main todo list with state management
-│   ├── TodoItem.tsx    # Individual todo item
-│   └── EditTodoModal.tsx # Edit modal with native <dialog>
-├── db/                 # Database layer
-│   ├── index.ts        # SQLite connection
+├── components/             # React components
+│   ├── shared/             # Reusable UI components (Badge, etc.)
+│   ├── TodoList.tsx        # Main todo list with state management
+│   ├── TodoItem.tsx        # Individual todo item
+│   └── EditTodoModal.tsx   # Edit modal with native <dialog>
+├── db/                     # Database layer
+│   ├── index.ts            # SQLite connection
 │   └── todos.repository.ts # Data access layer
-├── routes/             # Route handlers
-│   ├── home.tsx        # Main page with loader
-│   └── api/todos/      # REST API endpoints
-│       ├── index.tsx   # GET /api/todos, POST /api/todos
-│       └── $id.tsx     # GET/PATCH/DELETE /api/todos/:id
-├── services/           # Business logic
-│   └── todos.api.ts    # Client-side API service
-├── types/              # TypeScript definitions
-│   └── todo.ts         # Todo type definitions
-└── routes.ts           # Route configuration
+├── routes/                 # Route handlers
+│   ├── home.tsx            # Main page with loader / action
+│   └── api/todos/          # REST API endpoints
+│       ├── index.tsx       # GET /api/todos, POST /api/todos
+│       └── $id.tsx         # GET/PATCH/DELETE /api/todos/:id
+├── services/               # Business logic
+│   └── todos.api.ts        # Client-side API service
+├── types/                  # TypeScript definitions
+│   └── todo.ts             # Todo type definitions
+└── routes.ts               # Route configuration
 ```
 
 ## 🚀 Getting Started
