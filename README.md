@@ -161,28 +161,47 @@ export async function loader() {
 }
 ```
 
-### 4. Server Actions
-
-Mutations are handled server-side via `action` functions. Example from `app/routes/api/todos/index.tsx`:
+The loader's return value is received by the component via `loaderData` component property.
 
 ```typescript
-export const action = async ({ request }: Route.ActionArgs) => {
-  if (request.method === "POST") {
-    const body = await request.json();
-    const todo = TodosRepository.create({
-      id: Date.now().toString(),
-      title: body.title,
-      createdAt: Date.now(),
-    });
-    return Response.json(todo, { status: 201 });
-  }
-  return new Response(null, { status: 405 });
-};
+export default function Home({ loaderData, ... }: Route.ComponentProps) { ... }
 ```
+
+### 4. Server Actions
+
+Mutations are handled server-side via `action` functions. The `app/home.tsx` component handled ToDo creations through server actions.
+
+```typescript
+export async function action({ request }: Route.ActionArgs) {
+  const formData = await request.formData();
+  const title = formData.get('title');
+
+  if (typeof title !== 'string' || !title.trim()) {
+    return { error: 'Title is required' };
+  }
+
+  const todo = TodosRepository.create({
+    id: Date.now().toString(),
+    title: title.trim(),
+    createdAt: Date.now(),
+  });
+
+  // Send todo object
+  return { todo };
+}
+```
+
+The action's return value is received by the component via `actionData` component property.
+
+```typescript
+export default function Home({ ..., actionData }: Route.ComponentProps) { ... }
+```
+
+Other examples of server action handling can be found in the API routes.
 
 ### 5. Router-Based API
 
-React Router routes can serve as REST API endpoints by omitting the default component export.
+React Router routes can serve as REST API endpoints by omitting the default component export. Our API is defined in `app/routes/api/todos/*`.
 
 #### Endpoints
 

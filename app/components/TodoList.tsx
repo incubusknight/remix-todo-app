@@ -13,12 +13,16 @@ export type TodoListProps = {
 export function TodoList({ todos: initialTodos }: TodoListProps) {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
-  const [input, setInput] = useState('');
   const [filter, setFilter] = useState<'all' | TodoState>('all');
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
   const navigate = useNavigate();
   const { id: editIdParam } = useParams();
   const [todoStateCounts, setTodoStateCounts] = useState<Record<TodoState, number>>({ active: 0, completed: 0 });
+
+  // Update todos when props change (after server action)
+  useEffect(() => {
+    setTodos(initialTodos);
+  }, [initialTodos]);
 
   const todoStates: TodoState[] = ['active', 'completed'];
   const todoStateLabels: Record<TodoState, string> = {
@@ -28,18 +32,6 @@ export function TodoList({ todos: initialTodos }: TodoListProps) {
   const todoStateColors: Record<TodoState, string[]> = {
     active: ['bg-blue-600', 'text-blue-600'],
     completed: ['bg-emerald-600', 'text-emerald-600'],
-  };
-
-  const addTodo = async () => {
-    const title = input.trim();
-    if (!title) return;
-    try {
-      const created = await TodosApi.create(title);
-      setTodos((prev) => [created, ...prev]);
-      setInput('');
-    } catch (err) {
-      console.error('Failed to create todo', err);
-    }
   };
 
   const toggleTodo = async (id: string) => {
@@ -144,27 +136,6 @@ export function TodoList({ todos: initialTodos }: TodoListProps) {
 
   return (
     <>
-      {/* Input Section */}
-      <div className='bg-white rounded-lg shadow-md p-6'>
-        <div className='flex gap-2'>
-          <input
-            type='text'
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyUp={(e) => e.key === 'Enter' && addTodo()}
-            placeholder='Add a new todo...'
-            className='flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
-          />
-          <button
-            onClick={addTodo}
-            disabled={!input.trim()}
-            className='px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:bg-gray-400'
-          >
-            Add
-          </button>
-        </div>
-      </div>
-
       {/* Filter Buttons */}
       <div className='flex gap-2'>
         <button
