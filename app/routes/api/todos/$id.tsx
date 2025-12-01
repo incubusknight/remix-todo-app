@@ -1,6 +1,6 @@
 import type { Route } from './+types/$id';
 import type { Todo } from '~/types/todo';
-import { TodosRepository } from '../../../db/todos.repository';
+import { TodosRepository } from '../../../db/.server/todos.repository';
 
 // PATCH /api/todos/:id
 // PUT /api/todos/:id

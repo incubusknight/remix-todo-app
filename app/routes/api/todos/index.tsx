@@ -1,5 +1,5 @@
 import type { Route } from './+types/index';
-import { TodosRepository } from '../../../db/todos.repository';
+import { TodosRepository } from '../../../db/.server/todos.repository';
 
 // GET /api/todos
 export const loader = (_args: Route.LoaderArgs) => {

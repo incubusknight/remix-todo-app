@@ -50,7 +50,7 @@ app/
 │   ├── TodoList.tsx        # Main todo list with state management
 │   ├── TodoItem.tsx        # Individual todo item
 │   └── EditTodoModal.tsx   # Edit modal with native <dialog>
-├── db/                     # Database layer
+├── db/.server              # Database layer (server modules)
 │   ├── index.ts            # SQLite connection
 │   └── todos.repository.ts # Data access layer
 ├── routes/                 # Route handlers
@@ -229,11 +229,19 @@ curl -X PATCH http://localhost:5173/api/todos/123 \
   -d '{"completed":true}'
 ```
 
+### 6. Server Modules (Convention)
+
+React Router allows file or directories to be marked as server-only modules; they are excluded from client bundles and only run on the server. The build will fail if any code in a `.server` file or directory accidentally ends up in the client module graph.
+
+All the database related logic exists within a `.server` folder: `app/db/.server/*`
+
+> `.client` modules are the opposite. This project does not contain any modules marked for exclusive client side usage.
+
 ## 🛠️ Development Notes
 
 ### Best Practices Implemented
 
-1. **Server/Client Separation**: `.server.ts` files ensure database code never reaches the browser
+1. **Server/Client Separation**: `db/.server` files ensure database code never reaches the browser
 2. **Type Safety**: Auto-generated route types via `+types/` modules
 3. **Accessibility**: Use of native elements when appropriate to follow semantic guidelines
 4. **Performance**: Server-side rendering + optimistic updates for instant feedback
