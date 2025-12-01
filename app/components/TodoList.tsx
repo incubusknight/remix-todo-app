@@ -138,7 +138,7 @@ export function TodoList({ todos: initialTodos }: TodoListProps) {
   return (
     <>
       {/* Filter Buttons */}
-      <div className='flex gap-2'>
+      <nav className='flex gap-2'>
         <button
           onClick={() => setFilter('all')}
           className={`px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer leading-5 ${
@@ -167,10 +167,10 @@ export function TodoList({ todos: initialTodos }: TodoListProps) {
             </span>
           </button>
         ))}
-      </div>
+      </nav>
 
       {/* Todo Items */}
-      <div className='space-y-2'>
+      <main className='space-y-2'>
         {filteredTodos.length > 0 ? (
           filteredTodos.map((todo) => (
             <TodoItem
@@ -190,7 +190,8 @@ export function TodoList({ todos: initialTodos }: TodoListProps) {
             </p>
           </div>
         )}
-      </div>
+      </main>
+      
       {/* Edit modal */}
       <EditTodoModal
         todo={editingTodo}

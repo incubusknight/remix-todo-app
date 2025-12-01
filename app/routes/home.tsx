@@ -47,15 +47,15 @@ export default function Home({ loaderData, actionData }: Route.ComponentProps) {
       <div className='max-w-2xl mx-auto'>
         <div className='grid gap-6'>
           {/* Header */}
-          <div>
+          <header>
             <h1 className='text-4xl font-bold text-gray-900 mb-2'>Remix Todo App</h1>
             <p className='text-gray-600'>
               A simple todo application using React Router (formerly known as Remix).
             </p>
-          </div>
+          </header>
 
           {/* Input Form section */}
-          <div className='bg-white rounded-lg shadow-md p-6'>
+          <section className='bg-white rounded-lg shadow-md p-6'>
             <Form method='post' className='flex gap-2'>
               <input
                 type='text'
@@ -74,7 +74,7 @@ export default function Home({ loaderData, actionData }: Route.ComponentProps) {
                 Add
               </button>
             </Form>
-          </div>
+          </section>
 
           {/* Todo List Section */}
           <TodoList todos={todos} />
