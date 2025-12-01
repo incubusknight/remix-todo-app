@@ -19,7 +19,7 @@ export function TodoList({ todos: initialTodos }: TodoListProps) {
   const { id: editIdParam } = useParams();
   const [todoStateCounts, setTodoStateCounts] = useState<Record<TodoState, number>>({ active: 0, completed: 0 });
 
-  // Update todos when props change (after server action)
+  // Update todos when props change
   useEffect(() => {
     setTodos(initialTodos);
   }, [initialTodos]);
@@ -121,6 +121,7 @@ export function TodoList({ todos: initialTodos }: TodoListProps) {
     })();
   }, [editIdParam, todos]);
 
+  // Make sure we update when status counts and list when filters are selected
   useEffect(() => {
     const completed = todos.filter((todo) => todo.completed).length;
     const active = todos.length - completed;
