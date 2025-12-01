@@ -1,15 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-gray-50;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+* {
+  @apply font-sans;
+}
+
+/* Dialog backdrop and positioning helpers */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(2px);
 }
