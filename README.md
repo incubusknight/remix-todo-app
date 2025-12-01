@@ -38,7 +38,7 @@ This application uses React Router's **Framework mode**, which provides the full
 | **Tooltips** | Radix UI | Accessible UI primitives |
 | **Backend** | React Router (SSR) | Server-side rendering & API |
 | **Database** | SQLite + better-sqlite3 | Persistent storage |
-| **Language** | TypeScript 5.6 | Type safety |
+| **Language** | TypeScript 5.6 | Code consistency and type safety |
 | **Build** | Vite | Fast bundling and HMR |
 
 ### Project Structure
@@ -62,6 +62,8 @@ app/
 │   └── todos.api.ts        # Client-side API service
 ├── types/                  # TypeScript definitions
 │   └── todo.ts             # Todo type definitions
+├── app.css                 # Style definitions
+├── root.tsx                # Required route in React Router app
 └── routes.ts               # Route configuration
 ```
 
