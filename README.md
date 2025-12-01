@@ -235,7 +235,6 @@ curl -X PATCH http://localhost:5173/api/todos/123 \
 
 1. **Server/Client Separation**: `.server.ts` files ensure database code never reaches the browser
 2. **Type Safety**: Auto-generated route types via `+types/` modules
-3. **Accessibility**: Native `<dialog>` elements with proper ARIA labels and keyboard navigation
 4. **Performance**: Server-side rendering + optimistic updates for instant feedback
 5. **URL State**: Edit operations reflected in URL for shareability and deep linking
 
