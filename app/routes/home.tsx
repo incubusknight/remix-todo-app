@@ -1,5 +1,5 @@
 import type { Route } from './+types/home';
-import { Form, redirect } from 'react-router';
+import { Form } from 'react-router';
 import { TodosRepository } from '~/db/.server/todos.repository';
 import { TodoList } from '../components/TodoList';
 import { useState, useEffect } from 'react';

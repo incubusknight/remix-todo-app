@@ -12,12 +12,15 @@ export type TodoListProps = {
 
 export function TodoList({ todos: initialTodos }: TodoListProps) {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
-  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>(initialTodos);
+  const [todoStateCounts, setTodoStateCounts] = useState<Record<TodoState, number>>({
+    active: initialTodos.filter((t) => !t.completed).length,
+    completed: initialTodos.filter((t) => t.completed).length
+  });  
   const [filter, setFilter] = useState<'all' | TodoState>('all');
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
   const navigate = useNavigate();
   const { id: editIdParam } = useParams();
-  const [todoStateCounts, setTodoStateCounts] = useState<Record<TodoState, number>>({ active: 0, completed: 0 });
 
   // Update todos when props change
   useEffect(() => {
