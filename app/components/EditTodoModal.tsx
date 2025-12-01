@@ -3,12 +3,12 @@ import type { Todo } from '../types/todo';
 
 interface EditTodoModalProps {
   todo: Todo | null;
-  isOpen?: boolean;
   onSave: (id: string, title: string) => void;
   onClose: () => void;
+  isOpen?: boolean; // Property exists but not used for now, open state is controlled through `todo` prop
 }
 
-export function EditTodoModal({ todo, isOpen, onSave, onClose }: EditTodoModalProps) {
+export function EditTodoModal({ todo, onSave, onClose }: EditTodoModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const [title, setTitle] = useState('');
 
@@ -38,7 +38,6 @@ export function EditTodoModal({ todo, isOpen, onSave, onClose }: EditTodoModalPr
 
   return (
     <dialog
-      open={isOpen}
       ref={dialogRef}
       className='fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg p-6 shadow-lg border border-gray-200 w-full max-w-md z-50'
       onCancel={(e) => {

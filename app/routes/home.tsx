@@ -11,5 +11,20 @@ export async function loader() {
 // This is the React component for the home route
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { todos } = loaderData;
-  return <TodoList todos={todos} />;
+  return (
+    <div className='min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-8 px-4'>
+      <div className='max-w-2xl mx-auto'>
+        <div className='grid gap-6'>
+          {/* Header */}
+          <div>
+            <h1 className='text-4xl font-bold text-gray-900 mb-2'>Remix Todo App</h1>
+            <p className='text-gray-600'>
+              A simple todo application using React Router (formerly known as Remix).
+            </p>
+          </div>
+          <TodoList todos={todos} />
+        </div>
+      </div>
+    </div>
+  );
 }
