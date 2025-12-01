@@ -13,8 +13,7 @@ This project demonstrates production-ready patterns for building full-stack Reac
 **Key Features:**
 - 🚀 Server-side rendering (SSR) for optimal performance
 - 🗄️ SQLite database with repository pattern
-- 🎨 Modern UI with Tailwind CSS and Lucide icons
-- 🔄 Optimistic updates with automatic rollback
+- 🎨 Simple UI with Tailwind CSS and Lucide icons
 - 🛣️ Path-based routing for shareable URLs (`/todos/:id`)
 - 📱 Responsive design with modal-based editing
 - 🎭 Loading states and error handling
@@ -78,7 +77,7 @@ app/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/incubusknight/remix-todo-app.git
    cd remix-todo-app
    ```
 
@@ -116,7 +115,7 @@ CREATE TABLE todos (
 );
 ```
 
-## 🎓 React Router Features Demonstrated
+## 🎓 React Router Features Explored
 
 This project showcases several advanced React Router capabilities:
 
@@ -133,16 +132,26 @@ export default {
 ```
 ### 2. Framework Routing
 
-Routes are explicitly defined in `app/routes.ts` using helper functions:
+Routes are explicitly defined in `app/routes.ts` using a combination of adhox route definitions and helper functions:
 
 ```typescript
 export default [
-  index("routes/home.tsx"),
+  // Helpers
+  route('/:id?', 'routes/home.tsx'),
   ...prefix('api/todos', [
-    index("routes/api/todos/index.tsx"),
-    route(":id", "routes/api/todos/$id.tsx"),
+    index('routes/api/todos/index.tsx'),
+    route(':id', 'routes/api/todos/$id.tsx'),
   ]),
+  // ADHOC
+  {
+    path: '/.well-known/*',
+    file: 'routes/well-known.tsx',
+  },
+] satisfies RouteConfig;
 ```
+
+> Refer to the file for more context on routing definitions.
+
 ### 3. Server Data Loading
 
 Data is fetched server-side via `loader` functions before rendering. Example from `app/routes/home.tsx`:
