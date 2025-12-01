@@ -59,7 +59,7 @@ app/
 │       ├── index.tsx       # GET /api/todos, POST /api/todos
 │       └── $id.tsx         # GET/PATCH/DELETE /api/todos/:id
 ├── services/               # Business logic
-│   └── todos.api.ts        # Client-side API service
+│   └── todos.api.client.ts # Client-side API service
 ├── types/                  # TypeScript definitions
 │   └── todo.ts             # Todo type definitions
 ├── app.css                 # Style definitions
@@ -120,7 +120,7 @@ CREATE TABLE todos (
 
 This project showcases several advanced React Router capabilities:
 
-### 1. Server Side Rendering Strategy
+### 1. Server Side Rendering (Strategy)
 
 React Router supports Server-Side Rendering (SSR), allowing you to pre-render your React application on the server and send the initial HTML to the client. This offers advantages like improved initial page load performance and better SEO, as search engine crawlers can more easily index the content.
 
@@ -133,7 +133,7 @@ export default {
 ```
 ### 2. Framework Routing
 
-Routes are explicitly defined in `app/routes.ts` using a combination of adhox route definitions and helper functions:
+Routes are explicitly defined in `app/routes.ts` using a combination of adhoc route definitions and helper functions:
 
 ```typescript
 export default [
@@ -237,13 +237,17 @@ React Router allows file or directories to be marked as server-only modules; the
 
 All the database related logic exists within a `.server` folder: `app/db/.server/*`
 
-> `.client` modules are the opposite. This project does not contain any modules marked for exclusive client side usage.
+### 7. Client Modules (Convention)
+
+`.client` modules are the opposite of `.server` modules. Logic and values exported from client modules will be undefined on the server; the only places to use them are in `useEffect` and UI user events like click handlers.
+
+The `TodosApi` service is a module that's only accessible to client code: `app/services/todos.api.client.ts`
 
 ## 🛠️ Development Notes
 
 ### Best Practices Implemented
 
-1. **Server/Client Separation**: `db/.server` files ensure database code never reaches the browser
+1. **Server/Client Separation**: `.server` and `.client` files ensure some modules are only used in their intended layer
 2. **Type Safety**: Auto-generated route types via `+types/` modules
 3. **Accessibility**: Use of native elements when appropriate to follow semantic guidelines
 4. **Performance**: Server-side rendering + optimistic updates for instant feedback

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import type { Todo, TodoState } from '../types/todo';
 import { TodoItem } from './TodoItem';
 import EditTodoModal from './EditTodoModal';
-import { TodosApi } from '../services/todos.api';
+import { TodosApi } from '../services/todos.api.client';
 import Badge from './shared/Badge';
 
 export type TodoListProps = {
