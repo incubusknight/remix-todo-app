@@ -2,7 +2,6 @@
 
 [![React Router](https://img.shields.io/badge/React_Router-v7-CA4245?logo=reactrouter&logoColor=white)](https://reactrouter.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A modern, full-stack todo application showcasing React Router v7 (formerly Remix) capabilities including server-side rendering, data loaders, server actions, and API routes.
 
